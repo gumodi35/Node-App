@@ -58,7 +58,14 @@ app.get('/hello/', (req, res) => {
     res.render('message', { title: 'Hello again!' });
 });
 
+// add return a value for a user
+app.get('/author/:name/book/:bookName', (req, res, next) => {
 
+    console.log(`author: ${ req.params.name }`);
+    console.log(` book: ${ req.params.bookName }`);
+
+    next();
+})
 
 // serve static assets
 app.use(express.static( cfg.dir.static ));
