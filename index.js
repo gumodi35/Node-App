@@ -5,9 +5,12 @@ import compression from 'compression';
 import { fileURLToPath } from 'url';
 import { dirname, sep } from 'path';
 
+import { helloRouter } from './routes/hello.js'
+
+
 // configuration 
 const 
-    __dirname = dirname(fileURLToPath( import.meta.url )) + sep,
+__dirname = dirname(fileURLToPath( import.meta.url )) + sep,
     cfg = {
         port: process.env.PORT || 3000,
         dir: {
@@ -17,17 +20,17 @@ const
         }
     };
 
-console.dir(cfg, { depth: null, color: true });
-
-// Express initiation
-// ...rest of code
-
+    console.dir(cfg, { depth: null, color: true });
+    
+    // Express initiation
+    // ...rest of code
+    
 // configuration
 /* const 
-    cfg = {
-        port: process.env.PORT || 3000
-    };
- */
+cfg = {
+    port: process.env.PORT || 3000
+};
+*/
 // Express initiation
 const app = express();
 
@@ -54,9 +57,12 @@ app.get('/', (req, res) => {
 });
 
 // another route
-app.get('/hello/', (req, res) => {
+/* app.get('/hello/', (req, res) => {
     res.render('message', { title: 'Hello again!' });
-});
+}); */
+
+// /hello/ route
+app.use('/hello', helloRouter);
 
 // add return a value for a user
 app.get('/author/:name/book/:bookName', (req, res, next) => {
