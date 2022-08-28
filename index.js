@@ -42,6 +42,11 @@ app.use((req, res, next) => {
 // HTTP compression
 app.use( compression () );
 
+// 404 error
+app.use((req, res) => {
+    res.status(404).send('Not found');
+});
+
 // home page route 
 app.get('/', (req, res) => {
     res.send('Hello World!');
