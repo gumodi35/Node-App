@@ -30,11 +30,17 @@ console.dir(cfg, { depth: null, color: true });
 // Express initiation
 const app = express();
 
+// do not identify Express
+app.disable('x-powered-by');
+
 // log every request to the terminal
 app.use((req, res, next) => {
     console.log(req.url);
     next();
 });
+
+// HTTP compression
+app.use( compression () );
 
 // home page route 
 app.get('/', (req, res) => {
